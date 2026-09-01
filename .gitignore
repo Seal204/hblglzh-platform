@@ -1,0 +1,14 @@
+# 本仓库只管理基础设施代码。
+.DS_Store
+*.swp
+*.tmp
+*.log
+
+# 本地私密覆盖文件
+.env
+.env.*
+!.env.example
+secrets/
+
+# 临时生成目录
+.generated/

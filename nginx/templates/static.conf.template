@@ -1,0 +1,13 @@
+# {{PROJECT}} - static project
+server {
+    listen 80;
+    listen [::]:80;
+    server_name {{DOMAIN}};
+
+    root /srv/hblglzh/www/{{PROJECT}};
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}

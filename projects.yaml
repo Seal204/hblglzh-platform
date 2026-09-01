@@ -1,0 +1,54 @@
+server:
+  domain: hblglzh.cc
+  root: /srv/hblglzh
+  public_ports:
+    - 80
+    - 443
+  notes: "2 vCPU / 2 GB RAM，静态优先，动态项目限制资源。"
+
+projects:
+  official:
+    name: "淮北理工学院卓越工程创新协会"
+    type: static
+    domain: hblglzh.cc
+    repository: "REPLACE_WITH_OFFICIAL_REPOSITORY"
+    source: /srv/hblglzh/projects/official
+    output: /srv/hblglzh/www/official
+    data: /srv/hblglzh/data/official
+    status: online
+    owner: "协会 Web 管理员"
+    notes: "协会官网；真实新闻、成果、媒体文件位于 data/official，不进入 Git。"
+
+  home:
+    name: "协会项目导航"
+    type: static-route
+    domain: hblglzh.cc
+    route: /home/
+    repository: "REPLACE_WITH_OFFICIAL_REPOSITORY"
+    source: /srv/hblglzh/projects/official/apps/home
+    output: /srv/hblglzh/www/home
+    status: online
+    owner: "协会 Web 管理员"
+
+  robot-example:
+    name: "机器人项目（示例）"
+    type: static
+    domain: robot.hblglzh.cc
+    repository: "REPLACE_WITH_PROJECT_REPOSITORY"
+    source: /srv/hblglzh/projects/robot-example
+    output: /srv/hblglzh/www/robot-example
+    status: example
+    owner: "待填写"
+
+  attendance-example:
+    name: "签到系统（示例）"
+    type: service
+    domain: attendance.hblglzh.cc
+    repository: "REPLACE_WITH_PROJECT_REPOSITORY"
+    source: /srv/hblglzh/projects/attendance-example
+    data: /srv/hblglzh/data/attendance-example
+    secrets: /srv/hblglzh/secrets/attendance-example.env
+    port: 11001
+    memory: 256M
+    status: example
+    owner: "待填写"

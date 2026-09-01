@@ -1,0 +1,32 @@
+[Unit]
+Description=HBLGLZH Web App - {{PROJECT}}
+After=network.target
+
+[Service]
+Type=simple
+User={{RUN_USER}}
+Group={{RUN_GROUP}}
+WorkingDirectory=/srv/hblglzh/projects/{{PROJECT}}
+EnvironmentFile=-/srv/hblglzh/secrets/{{PROJECT}}.env
+ExecStart={{EXEC_START}}
+Restart=on-failure
+RestartSec=5
+
+# 2C2G server protection
+MemoryMax={{MEMORY_MAX}}
+CPUQuota={{CPU_QUOTA}}
+TasksMax=128
+
+# Basic hardening. Disable individual options if an app genuinely needs them.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/srv/hblglzh/data/{{PROJECT}} /srv/hblglzh/runtime/{{PROJECT}}
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=hblglzh-{{PROJECT}}
+
+[Install]
+WantedBy=multi-user.target
